@@ -17,8 +17,11 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 /**
+ * HTTP 요청 메시지 - JSON
  * {"username":"hello", "age":20}
  * content-type: application/json
+ *
+ * @RequestBody
  */
 @Slf4j
 @Controller
@@ -49,15 +52,14 @@ public class RequestBodyJsonController {
 
     @ResponseBody
     @PostMapping("/request-body-json-v3")
-    public String requestBodyJsonV3(@RequestBody HelloData helloData) throws IOException { //Http 메세지 body 읽어서 helloData객체에 저장
+    public String requestBodyJsonV3(@RequestBody HelloData helloData) { //Http 메세지 body 읽어서 helloData객체에 저장
         log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
-
         return "ok";
     }
 
     @ResponseBody
     @PostMapping("/request-body-json-v4")
-    public String requestBodyJsonV4(HttpEntity<HelloData> httpEntity) throws IOException { //Http 메세지 body 읽어서 helloData객체에 저장
+    public String requestBodyJsonV4(HttpEntity<HelloData> httpEntity) { //Http 메세지 body 읽어서 helloData객체에 저장
         HelloData data = httpEntity.getBody();
         log.info("username={}, age={}", data.getUsername(), data.getAge());
 
@@ -66,9 +68,8 @@ public class RequestBodyJsonController {
 
     @ResponseBody
     @PostMapping("/request-body-json-v5")
-    public HelloData requestBodyJsonV5(@RequestBody HelloData data) throws IOException { //json 요청 -> http 메시지 컨버터 -> 객체
+    public HelloData requestBodyJsonV5(@RequestBody HelloData data) { //json 요청 -> http 메시지 컨버터 -> 객체
         log.info("username={}, age={}", data.getUsername(), data.getAge());
-
         return data; //객체 -> http 메시지 컨버터 -> json 응답
     }
 }
