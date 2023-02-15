@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * HTTP 응답 - HTTP API, 메시지 바디에 직접 입력
+ *
+ * @RestController = @Controller + @ResponseBody
+ */
 @Slf4j
 //@Controller
 //@ResponseBody
@@ -26,7 +31,6 @@ public class ResponseBodyController {
         return new ResponseEntity<>("ok", HttpStatus.OK);
     }
 
-    //    @ResponseBody
     @GetMapping("/response-body-string-v3")
     public String responseBodyV3() {
         return "ok";
@@ -42,13 +46,12 @@ public class ResponseBodyController {
     }
 
     @ResponseStatus(HttpStatus.OK) //status 지정
-//    @ResponseBody
     @GetMapping("/response-body-json-v2")
     public HelloData responseBodyJsonV2() {
         HelloData helloData = new HelloData();
         helloData.setUsername("userA");
         helloData.setAge(20);
-        
+
         return helloData;
     }
 }
