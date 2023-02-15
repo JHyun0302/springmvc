@@ -19,6 +19,10 @@ import java.io.InputStream;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * HTTP 요청 메시지 - 단순 텍스트
+ * HTTP 메시지 바디를 직접 조회: @RequestBody
+ */
 @Slf4j
 @Controller
 public class RequestBodyStringController {
