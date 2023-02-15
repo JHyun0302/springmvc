@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Locale;
 
+/**
+ * header 정보 log 출력
+ */
 @Slf4j
 @RestController
 public class RequestHeaderController {
@@ -20,8 +23,8 @@ public class RequestHeaderController {
                           HttpServletResponse response,
                           HttpMethod httpMethod,
                           Locale locale, //언어 정보
-                          @RequestHeader MultiValueMap<String, String> headerMap, //header 전체 정보: MultiValueMap = 1개 key에 여러 value 받기 가능
-                          @RequestHeader("Host") String host, //header 정보 중 하나만 받을
+                          @RequestHeader MultiValueMap<String, String> headerMap, // MultiValueMap = 1개 key에 여러 value 받기 가능 <keyA=val1 & keyA=val2>
+                          @RequestHeader("Host") String host22, //특정 HTTP 헤더 조회
                           @CookieValue(value = "myCookie", required = false) String cookie // value: 쿠키 이름, required=false (없어도 됨)
     ) {
         log.info("request={}", request);
@@ -29,7 +32,7 @@ public class RequestHeaderController {
         log.info("httpMethod={}", httpMethod);
         log.info("locale={}", locale);
         log.info("headerMap={}", headerMap);
-        log.info("header host={}", host);
+        log.info("header host={}", host22);
         log.info("myCookie={}", cookie);
 
         return "ok";
