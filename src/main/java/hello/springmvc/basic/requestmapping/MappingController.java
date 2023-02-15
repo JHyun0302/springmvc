@@ -13,8 +13,6 @@ public class MappingController {
     /**
      * 둘다 허용 /hello-basic, /hello-basic/
      * 메서드 따로 설정 안해서 모두 허용 (GET, HEAD, POST, PUT, PATCH, DELETE)
-     *
-     * @return Http 메세지 바디에 바로 입력
      */
     @RequestMapping({"/hello-basic", "/hello-go"})
     public String helloBasic() {
@@ -38,8 +36,7 @@ public class MappingController {
     }
 
     /**
-     * PathVariable 사용 - http://localhost:8080/mapping/userA
-     * <p>
+     * PathVariable 사용
      * 변수명이 같으면 생략 가능
      *
      * @PathVariable("userId") String userId -> @PathVariable String userId
@@ -60,7 +57,7 @@ public class MappingController {
     }
 
     /**
-     * 파라미터로 추가 매핑 -http://localhost:8080/mapping-param?mode=debug (쿼리 파라미터 형식)
+     * 파라미터로 추가 매핑 -http://localhost:8080/mapping-param?mode=debug (쿼리 파라미터가 있어야 매핑됨!)
      * params="mode",
      * params="!mode"
      * params="mode=debug"
@@ -74,7 +71,7 @@ public class MappingController {
     }
 
     /**
-     * 특정 헤더로 추가 매핑 - head 정보에 key: mode, value: debug가 있어야 검색 가능
+     * 특정 헤더로 추가 매핑 - header 정보에 <mode, debug>가 있어야 매핑 가능
      * headers="mode",
      * headers="!mode"
      * headers="mode=debug"
@@ -87,7 +84,7 @@ public class MappingController {
     }
 
     /**
-     * Content-Type 헤더 기반 추가 매핑 Media Type - Content-Type이 "application/json"이여야 검색 가능
+     * Content-Type 헤더 기반 추가 매핑 Media Type - Content-Type이 "application/json"이여야 매핑 가능
      * * consumes="application/json"
      * consumes="!application/json"
      * consumes="application/*"
@@ -101,7 +98,7 @@ public class MappingController {
     }
 
     /**
-     * Accept 헤더 기반 Media Type - Accpet가 "text/html"과 관련이 있어야 검색 가능
+     * Accept 헤더 기반 Media Type - Accpet가 "text/html"과 관련이 있어야 매핑 가능
      * * produces = "text/html"
      * produces = "!text/html"
      * * produces = "text/*"
