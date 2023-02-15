@@ -13,6 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ * 쿼리 파라미터 정보 log 출력
+ *
+ * @RequestParam("username") == request.getParameter("username")
+ * @ModelAttribute: 객체 - 프로시저(get, set) 대신해줌
+ */
 @Slf4j
 @Controller
 public class RequestParamController {
@@ -46,7 +52,7 @@ public class RequestParamController {
     }
 
     @ResponseBody
-    @RequestMapping("/request-param-v4")//String, int같은 단순 타입이면 @RequestParam도 생략 가능
+    @RequestMapping("/request-param-v4")//String, int 같은 단순 타입이면 @RequestParam도 생략 가능
     public String requestParamV4(String username, int age) {
         log.info("username={}, age={}", username, age);
         return "ok";
@@ -55,8 +61,8 @@ public class RequestParamController {
     @ResponseBody
     @RequestMapping("/request-param-required")
     public String requestParamRequired(
-            @RequestParam(required = true) String username, //username이 쿼리 파라미터로 넘어와야함(없으면 에러)
-            @RequestParam(required = false) Integer age) { //age가 쿼리 파라미터로 없어도 됨
+            @RequestParam(required = true) String username, //username: 쿼리 파라미터로 넘어와야함(없으면 에러)
+            @RequestParam(required = false) Integer age) { //age: 쿼리 파라미터로 없어도 됨
         log.info("username={}, age={}", username, age);
         return "ok";
     }
